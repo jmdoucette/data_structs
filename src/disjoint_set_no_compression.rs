@@ -101,32 +101,32 @@ mod tests {
         for i in 0..8 {
             ds.add(i);
         }
-        assert_eq!(ds.same_set(0, 2), false);
-        assert_eq!(ds.same_set(0, 2), false);
-        assert_eq!(ds.same_set(4, 0), false);
+        assert!(!ds.same_set(0, 2));
+        assert!(!ds.same_set(0, 2));
+        assert!(!ds.same_set(4, 0));
 
         ds.union(2, 4);
-        assert_eq!(ds.same_set(2, 4), true);
-        assert_eq!(ds.same_set(4, 2), true);
+        assert!(ds.same_set(2, 4));
+        assert!(ds.same_set(4, 2));
 
         ds.union(4, 2);
-        assert_eq!(ds.same_set(2, 4), true);
-        assert_eq!(ds.same_set(4, 2), true);
+        assert!(ds.same_set(2, 4));
+        assert!(ds.same_set(4, 2));
 
         ds.union(2, 6);
-        assert_eq!(ds.same_set(2, 6), true);
-        assert_eq!(ds.same_set(6, 4), true);
+        assert!(ds.same_set(2, 6));
+        assert!(ds.same_set(6, 4));
 
         ds.union(0, 7);
         ds.union(5, 0);
-        assert_eq!(ds.same_set(5, 2), false);
-        assert_eq!(ds.same_set(6, 4), true);
+        assert!(!ds.same_set(5, 2));
+        assert!(ds.same_set(6, 4));
 
         ds.union(5, 6);
         ds.union(1, 3);
-        assert_eq!(ds.same_set(7, 2), true);
-        assert_eq!(ds.same_set(1, 3), true);
-        assert_eq!(ds.same_set(1, 7), false);
-        assert_eq!(ds.same_set(3, 0), false);
+        assert!(ds.same_set(7, 2));
+        assert!(ds.same_set(1, 3));
+        assert!(!ds.same_set(1, 7));
+        assert!(!ds.same_set(3, 0));
     }
 }
