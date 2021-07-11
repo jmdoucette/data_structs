@@ -58,13 +58,34 @@ impl<T: Hash + Eq + Copy> DisjointSet<T> {
     }
 
     fn find(&mut self, x: T) -> T {
+        let res;
         let mut curr = x;
+
         loop {
             match self.parents.get(&curr).unwrap() {
                 Some(next) => curr = *next,
-                None => return curr,
+                None => {
+                    res = curr;
+                    break;
+                }
             }
         }
+
+        curr = x;
+        let mut prev;
+        loop {
+            match self.parents.get(&curr).unwrap() {
+                Some(next) => {
+                    prev = curr;
+                    curr = *next;
+                    self.parents.insert(prev, Some(res));
+                }
+                None => break,
+            } 
+        }
+
+        res
+
     }
 
     pub fn same_set(&mut self, x: T, y: T) -> bool {
