@@ -1,3 +1,2 @@
-#[cfg(test)]
-mod disjoint_set;
-mod disjoint_set_no_compression;
+pub mod disjoint_set;
+pub mod disjoint_set_no_compression;
