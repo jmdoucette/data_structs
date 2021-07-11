@@ -1,11 +1,11 @@
 use std::collections::HashMap;
 
-struct DisjointSet {
-    parents: HashMap<i32, Option<i32>>,
-    sizes: HashMap<i32, usize>,
+pub struct DisjointSet<T: Eq> {
+    parents: HashMap<T, Option<T>>,
+    sizes: HashMap<T, usize>,
 }
 
-impl DisjointSet {
+impl<T: Eq> DisjointSet<T> {
     pub fn new() -> Self {
         Self {
             parents: HashMap::new(),
@@ -21,15 +21,30 @@ impl DisjointSet {
         self.parents.len()
     }
 
-    pub fn add(&mut self, x: i32) {
+    pub fn add(&mut self, x: T) {
         todo!();
     }
 
-    fn find(&mut self, x: i32) -> i32 {
+    pub fn union(&mut self, x: T, y: T) {
+
+    }
+
+    fn find(&mut self, x: T) -> T {
         todo!();
     }
 
-    pub fn same_component(&mut self, x: i32, y: i32) -> bool {
+    pub fn same_component(&mut self, x: T, y: T) -> bool {
         self.find(x) == self.find(y)
+    }
+}
+
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test1() {
+        assert_eq!(DisjointSet::<i32>::new().is_empty(), true);
     }
 }
