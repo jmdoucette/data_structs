@@ -1,12 +1,12 @@
 use std::collections::HashMap;
 use std::hash::Hash;
 
-pub struct DisjointSet<T: Hash + Eq + Copy> {
+pub struct DisjointSetNoCompression<T: Hash + Eq + Copy> {
     parents: HashMap<T, Option<T>>,
     sizes: HashMap<T, usize>,
 }
 
-impl<T: Hash + Eq + Copy> DisjointSet<T> {
+impl<T: Hash + Eq + Copy> DisjointSetNoCompression<T> {
     pub fn new() -> Self {
         Self {
             parents: HashMap::new(),
@@ -77,7 +77,7 @@ mod tests {
     use super::*;
     #[test]
     fn test_len() {
-        let mut ds = DisjointSet::new();
+        let mut ds = DisjointSetNoCompression::new();
         assert!(ds.is_empty());
         assert_eq!(ds.len(), 0);
 
@@ -90,14 +90,14 @@ mod tests {
     #[test]
     #[should_panic]
     fn test_add() {
-        let mut ds = DisjointSet::new();
+        let mut ds = DisjointSetNoCompression::new();
         ds.add(1);
         ds.add(1);
     }
 
     #[test]
     fn test_union_and_same_set() {
-        let mut ds = DisjointSet::new();
+        let mut ds = DisjointSetNoCompression::new();
         for i in 0..8 {
             ds.add(i);
         }
